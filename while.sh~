@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while [ $licznik -lt 10]; do
+    echo "licznik:$licznik"
+    let licznik=licznik+1
+done
