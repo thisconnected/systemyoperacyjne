@@ -5,6 +5,7 @@ read filename
 
 ls $filename -la
 echo ""
+
 while read LINE
     do echo $LINE
 done < $filename
