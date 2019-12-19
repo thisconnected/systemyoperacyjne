@@ -1,5 +1,8 @@
 #!/bin/bash
-
+repos=0
+add=0
+commitno=0
+push=0
 function commit()
 {
     linefixed="$line"
@@ -22,11 +25,16 @@ function options()
 		;;
 	    "add")
 		git add .
+		sleep 1
+		printwd
+		let "add++"
 		;;
 	    "commit")
 		git status
 		commit
 		sleep 2
+		printwd
+		let "commitno++"
 		continue
 		;;
 	    "push")
@@ -34,6 +42,7 @@ function options()
 		git push
 		printwd
 		echo "PUSHED"
+		let "push++"
 		read
 		break
 		;;
@@ -56,7 +65,6 @@ function options()
 function printwd()
 {
     clear
-    git add .
     echo "-------------------"
     echo "$line"
     echo "-------------------"
@@ -84,8 +92,13 @@ do
     if ! [[ -d "$line/.git" ]]; then
 	continue
     fi
+    let "repos++"
     cd $line
     printwd
     options
 done
-
+echo "$repos"
+echo "$add adds"
+echo "$commitno commits"
+echo "$push pushes"
+echo "DONE"
