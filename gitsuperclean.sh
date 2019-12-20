@@ -14,7 +14,7 @@ function commit()
     echo "commited from $line to origin/master"
     sleep 2
     temp1=$(git status | grep ahead)
-    temp2="\nCOMMITED $name  $line"
+    temp2="COMMITED $name  $line\n"
     lastaction=$temp2$temp1
     printwd
     let "commitno++"
@@ -73,7 +73,7 @@ function options()
 function printwd()
 {
     clear
-    echo "$lastaction"
+    echo -e "$lastaction"
     echo "-------------------"
     echo "$line"
     echo "-------------------"
