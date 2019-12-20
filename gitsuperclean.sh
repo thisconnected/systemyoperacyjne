@@ -14,7 +14,7 @@ function commit()
     git commit -m "$name"
     echo "commited from $line to origin/master"
     sleep 2
-    temp1=$(`git status | grep ahead`)
+    temp1=$(git status | grep ahead)
     temp2="
 COMMITED $name  $line"
     lastaction=$temp2$temp1
