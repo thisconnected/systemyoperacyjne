@@ -6,7 +6,6 @@ push=0
 lastaction=""
 function commit()
 {
-    git status
     linefixed="$line"
     echo "commit name:"
     read name
@@ -15,8 +14,7 @@ function commit()
     echo "commited from $line to origin/master"
     sleep 2
     temp1=$(git status | grep ahead)
-    temp2="
-COMMITED $name  $line"
+    temp2="\nCOMMITED $name  $line"
     lastaction=$temp2$temp1
     printwd
     let "commitno++"
