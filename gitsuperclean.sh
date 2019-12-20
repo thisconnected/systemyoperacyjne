@@ -14,7 +14,9 @@ function commit()
     git commit -m "$name"
     echo "commited from $line to origin/master"
     sleep 2
+    temp=$(`git status | grep ahead`)
     lastaction="COMMITED $name  $line"
+    lastaction+=$temp
     printwd
     let "commitno++"
     
