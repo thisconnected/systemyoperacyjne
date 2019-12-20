@@ -5,12 +5,25 @@ commitno=0
 push=0
 function commit()
 {
+    git status
     linefixed="$line"
     echo "commit name:"
     read name
     echo "git commit -m $name"
     git commit -m $linefixed
     echo "commited from $line to origin/master"
+    sleep 2
+    printwd
+    let "commitno++"
+}
+function push()
+{
+    git status
+    git push
+    printwd
+    echo "PUSHED"
+    let "push++"
+    read
 }
 function options()
 {
@@ -30,20 +43,10 @@ function options()
 		let "add++"
 		;;
 	    "commit")
-		git status
 		commit
-		sleep 2
-		printwd
-		let "commitno++"
-		continue
 		;;
 	    "push")
-		git status
-		git push
-		printwd
-		echo "PUSHED"
-		let "push++"
-		read
+		
 		break
 		;;
 	    "diff")
@@ -97,8 +100,10 @@ do
     printwd
     options
 done
-echo "$repos"
-echo "$add adds"
+clear
+echo "--------------------------"
+echo "$repos repositories in $D:"
+echo ""
 echo "$commitno commits"
 echo "$push pushes"
 echo "DONE"
