@@ -3,6 +3,7 @@ repos=0
 add=0
 commitno=0
 push=0
+lastaction=""
 function commit()
 {
     git status
@@ -10,20 +11,21 @@ function commit()
     echo "commit name:"
     read name
     echo "git commit -m $name"
-    git commit -m $linefixed
+    git commit -m "$name"
     echo "commited from $line to origin/master"
     sleep 2
+    lastaction="COMMITED $name  $line"
     printwd
     let "commitno++"
+    
 }
 function push()
 {
     git status
     git push
     printwd
-    echo "PUSHED"
     let "push++"
-    read
+    lastaction="PUSHED $line"
 }
 function options()
 {
@@ -39,6 +41,7 @@ function options()
 	    "add")
 		git add .
 		sleep 1
+		lastaction="ADDED $line"
 		printwd
 		let "add++"
 		;;
@@ -56,6 +59,7 @@ function options()
 		;;
 	    "shell")
 		bash
+		lastaction="EXITED SHELL"
 		printwd
 		;;
 	    *)
@@ -68,6 +72,7 @@ function options()
 function printwd()
 {
     clear
+    echo "$lastaction"
     echo "-------------------"
     echo "$line"
     echo "-------------------"
