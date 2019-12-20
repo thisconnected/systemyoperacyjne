@@ -46,7 +46,7 @@ function options()
 		commit
 		;;
 	    "push")
-		
+		push
 		break
 		;;
 	    "diff")
