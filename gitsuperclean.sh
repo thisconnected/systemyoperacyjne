@@ -24,6 +24,7 @@ function push()
 {
     git status
     git push
+    sleep 2
     printwd
     let "push++"
     lastaction="PUSHED $line"
@@ -77,12 +78,17 @@ function printwd()
     echo "-------------------"
     echo "$line"
     echo "-------------------"
-    git diff origin/master --name-status
-    echo ""
+    temp1=$(git diff origin/master --name-status | wc -l)
+    if [ $temp1 -gt 1 ]; then
+	echo "vs origin/master"
+	git diff origin/master --name-status
+	echo ""
+    fi
     git status
     echo "------------------"
     #git status > /tmp/gitbuffer
     #parsestatus
+    lastaction=""
 }
 function parsestatus()
 {
@@ -92,9 +98,18 @@ function parsestatus()
     grep "new file" /tmp/gitbuffer >> /tmp/gitstatus
 }
 
-D=~/pwsz
+#main
+if [ $# -eq 0 ]
+then
+    D=~/pwsz
+else
+    D=$1
+fi
+
+
 
 cd $D
+lastaction="starting in $D"
 for line in `find . -maxdepth 1 -type d`;
 do
     cd $D
