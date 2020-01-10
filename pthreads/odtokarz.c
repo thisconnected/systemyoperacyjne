@@ -1,7 +1,6 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define NUM_THREADS     5
 
 void *PrintHello(void *message)
 {
@@ -31,6 +30,9 @@ int main (int argc, char *argv[])
     fprintf(stderr,"ERROR; return code from pthread_create() is %d\n", iret2);
     exit(EXIT_FAILURE);
   }
+
+  printf("pthread_create() for %s returns: %d\n",message1,iret1);
+  printf("pthread_create() for %s returns: %d\n",message2,iret2);
   
   
   pthread_join(thread1, NULL);
