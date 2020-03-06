@@ -5,7 +5,8 @@
  
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Patryk Kaniewski");
- 
+MODULE_INFO(intree, "Y");
+
 static int simple_init(void)
 {
 	printk(KERN_ALERT "inicjalizacja");

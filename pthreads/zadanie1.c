@@ -1,7 +1,7 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define NUM_THREADS     5
+#define NUM_THREADS     100
 
 void *PrintHello(void *threadid)
 {
